@@ -13,36 +13,38 @@
 <div class="container">
     <div class="keys">
         <div data-key="KeyA" class="key">
-            A
+            <kbd>A</kbd>
+            <p>Epstein</p>
         </div>
         <div data-key="KeyS" class="key">
-            S
+            <kbd>S</kbd>
+            <p>Did</p>
         </div>
         <div data-key="KeyD" class="key">
-            D
+            <kbd>D</kbd>
+            <p>Not</p>
         </div>
         <div data-key="KeyF" class="key">
-            F
+            <kbd>F</kbd>
+            <p>Kill</p>
         </div>
         <div data-key="KeyG" class="key">
-            G
+            <kbd>G</kbd>
+            <p>Him</p>
         </div>
         <div data-key="KeyH" class="key">
-            H
-        </div>
-        <div data-key="KeyJ" class="key">
-            J
+            <kbd>H</kbd>
+            <p>Self</p>
         </div>
     </div>
 </div>
 
-<audio data-key="KeyA" src="./audio/hello.wav"></audio>
-<audio data-key="KeyS" src="./audio/clap.wav"></audio>
-<audio data-key="KeyD" src="./audio/hihat.wav"></audio>
-<audio data-key="KeyF" src="./audio/kick.wav"></audio>
-<audio data-key="KeyG" src="./audio/ride.wav"></audio>
-<audio data-key="KeyH" src="./audio/snare.wav"></audio>
-<audio data-key="KeyJ" src="./audio/tom.wav"></audio>
+<audio data-key="KeyA" src="./audio/epstein.wav"></audio>
+<audio data-key="KeyS" src="./audio/did.wav"></audio>
+<audio data-key="KeyD" src="./audio/not.wav"></audio>
+<audio data-key="KeyF" src="./audio/kill.wav"></audio>
+<audio data-key="KeyG" src="./audio/him.wav"></audio>
+<audio data-key="KeyH" src="./audio/self.wav"></audio>
 
 <script type="text/javascript">
 
@@ -51,7 +53,7 @@
         key.classList.add('playing');
     };
 
-    const keyedPlayAudio = (e) => {
+    const playAudio = (e) => {
         const audio = document.querySelector(`audio[data-key="${e.code}"]`);
         const key = document.querySelector(`.key[data-key="${e.code}"]`);
         if(!audio || !key) return;
@@ -60,17 +62,6 @@
         audio.play();
     };
 
-    window.addEventListener('keydown', keyedPlayAudio);
-
-    const clickedPlayAudio = (e) => {
-        const code = e.target.dataset.key;
-        const audio = document.querySelector(`audio[data-key="${code}"]`);
-        const key = document.querySelector(`.key[data-key="${code}"]`);
-        if(!audio || !key) return;
-        addPlayingTransition(key);
-        audio.currentTime = 0;
-        audio.play();
-    };
 
     function removeTransition(e) {
         if (e.propertyName !== 'transform') return; //skip if not a transform transition
@@ -81,10 +72,11 @@
         // this.classList.remove('playing')
     };
 
+    window.addEventListener('keydown', playAudio);
+
     const keys = document.querySelectorAll('.key');
     keys.forEach((key) => {
-        key.addEventListener('transitionend', removeTransition);
-        key.addEventListener('click', clickedPlayAudio)
+        key.addEventListener('transitionend', removeTransition)
     })
 
 </script>

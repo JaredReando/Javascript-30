@@ -6,6 +6,15 @@ html {
     font-family: sans-serif;
 }
 
+kbd {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: .5em;
+    color: orange;
+}
+
 .container {
     background: url('./hot_air.jpg') bottom center;
     background-size: cover;
@@ -26,6 +35,7 @@ html {
     position: relative;
     z-index: 999;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 80px;
