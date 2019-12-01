@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>Sound Board</title>
     <meta name="description" content="Sound Board">
-
     <link rel="stylesheet" href="./styles.css">
-
 </head>
 
 <body>
+<a href="../index.html">Back</a>
+<a href="https://www.notion.so/jaredreando/01-Sound-Board-0140fa3b1a1a496d8f7a07360856a476">Notes</a>
 <div class="container">
     <div class="keys">
         <div data-key="KeyA" class="key">
@@ -47,8 +47,6 @@
 <audio data-key="KeyH" src="./audio/self.wav"></audio>
 
 <script type="text/javascript">
-
-
     const addPlayingTransition = (key) => {
         key.classList.add('playing');
     };
@@ -72,7 +70,7 @@
         // this.classList.remove('playing')
     };
 
-    window.addEventListener('keydown', playAudio);
+    window.addEventListener('keyup', playAudio);
 
     const keys = document.querySelectorAll('.key');
     keys.forEach((key) => {

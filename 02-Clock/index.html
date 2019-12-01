@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Clock</title>
+    <meta name="description" content="clock">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<a href="../index.html">Back</a>
+<a href="https://www.notion.so/jaredreando/02-Clock-59347c3090974eb187dce71cd7fcef7e">Notes</a>
+<div class="clock">
+    <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand minute-hand"></div>
+        <div class="hand second-hand"></div>
+        <div class="center-dot"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+const hourHand = document.querySelector('.hour-hand');
+const minuteHand = document.querySelector('.minute-hand');
+const secondHand = document.querySelector('.second-hand');
+
+function transitionClearCheck(timeElement, degreeValue) {
+    if (degreeValue === 90) {
+        const transition = timeElement.style.transition;
+        timeElement.style.transition = 'none';
+
+        setTimeout(() => {
+            timeElement.style.transition = transition;
+        }, 100);
+    }
+}
+
+function getDate() {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const hoursDegrees = (hours * 30) + 90;
+    transitionClearCheck(hourHand, hoursDegrees);
+    hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+    const minutes = now.getMinutes();
+    const minutesDegrees = (minutes * 6) + 90;
+    transitionClearCheck(minuteHand, minutesDegrees);
+    minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+    const seconds = now.getSeconds();
+    const secondsDegrees = (seconds * 6) + 90;
+    transitionClearCheck(secondHand, secondsDegrees);
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+}
+
+//sets hands on initial page load, before setInterval() begins
+getDate();
+
+window.setInterval(() => {
+    getDate()
+}, 1000)
+
+</script>
+</body>
+</html>
