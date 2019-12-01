@@ -39,8 +39,8 @@ body {
 
 .hour-hand {
     transform: rotate(0deg);
-    width: 35%;
-    left: 15%;
+    width: 30%;
+    left: 20%;
 }
 
 .minute-hand {
