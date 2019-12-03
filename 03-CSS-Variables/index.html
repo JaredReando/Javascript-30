@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CSS Variables</title>
+    <meta name="description" content="css variables">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<a href="../index.html">Back</a>
+<a href="https://www.notion.so/jaredreando/02-Clock-59347c3090974eb187dce71cd7fcef7e">Notes</a>
+<div class="container">
+    <h1>Update CSS Variables with <span class="highlight">JS</span></h1>
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input type="range" id="spacing" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+        <label for="blur">Blur:</label>
+        <input type="range" id="blur" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+        <label for="base">Base Color:</label>
+        <input type="color" id="base" name="base" value="#BADA55">
+    </div>
+
+    <img src="./mountains.jpg" alt="mountains"/>
+</div>
+
+<script type="text/javascript">
+function handleUpdate() {
+    const suffix = this.dataset.sizing || '';
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+}
+
+const inputs = document.querySelectorAll('.controls input');
+
+inputs.forEach(input => input.addEventListener('change', handleUpdate));
+inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+</script>
+</body>
+</html>
