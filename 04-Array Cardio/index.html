@@ -50,13 +50,12 @@
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
     const srotedByAgeInventors = inventors.sort((A, B) => {
-        console.log('sort pass')
         if (A.year > B.year) {
             return -1
         }
         return 1
     });
-    console.log(srotedByAgeInventors)
+    console.table(srotedByAgeInventors)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
@@ -65,22 +64,75 @@
         return accumulator + age;
     }, 0);
 
-    console.log(combinedAge)
+    console.log(`Combined age is ${combinedAge} years`)
 
     // 5. Sort the inventors by years lived
-    const sortedByAge = inventors.sort(inventor)
+    const sortedByAge = inventors.sort((inventorA, inventorB) => {
+        const ageOfA = inventorA.passed - inventorA.year;
+        inventorA.age = ageOfA;
+        const ageOfB = inventorB.passed - inventorB.year;
+        inventorB.age = ageOfB;
+        if (ageOfA > ageOfB) {
+            return -1
+        } else {
+            return 1
+        }
+    })
+
+    console.table(sortedByAge);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-
+    const bouls = ["Auguste-Blanqui",
+    "Barbès",
+    "Beaumarchais",
+    "de l'Amiral-Bruix",
+    "Mortier",
+    "Poniatowski",
+    "Soult",
+    "des Capucines",
+    "de la Chapelle",
+    "de Clichy",
+    "du Crime",
+    "du Général-d'Armée-Jean-Simon",
+    "Haussmann",
+    "de l'Hôpital",
+    "des Italiens",
+    "Lefebvre",
+    "de la Madeleine",
+    "de Magenta",
+    "Marguerite-de-Rochechouart",
+    "Montmartre",
+    "du Montparnasse",
+    "Raspail",
+    "Richard-Lenoir",
+    "Saint-Germain",
+    "Saint-Michel",
+    "de Sébastopol",
+    "de Strasbourg",
+    "du Temple",
+    "Voltaire",
+    "de la Zone"]
+    const boulDeVards = bouls.filter(boul => boul.includes('de'))
+    console.table(boulDeVards);
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sortedByLastName = people.sort();
 
+    console.table(sortedByLastName);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const instCount = data.reduce((counter, item) => {
+       if (!counter[item]) {
+           counter[item] = 1;
+       }
+       if (counter[item]) {
+           counter[item] += 1;
+       }
+       return counter;
+    }, {});
+    console.table(instCount)
 </script>
 </body>
 </html>
